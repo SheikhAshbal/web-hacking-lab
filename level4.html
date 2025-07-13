@@ -18,16 +18,17 @@
     }
   </script>
 
-  <!-- 💬 NeoBot Assistant -->
+   <!-- 💬 NeoBot Assistant -->
   <div id="bot" style="position: fixed; bottom: 30px; right: 30px; background: rgba(0,0,0,0.8); padding: 15px; color: #0f0; font-family: monospace; border: 2px solid #0f0; border-radius: 12px; z-index: 999;">
     🤖 <b>NeoBot:</b>
-    <p id="botText">Four flags. One passphrase. Stitch them wisely.</p>
+    <p id="botText">Inject something shiny into the DOM…</p>
   </div>
+
   <script>
     const levelHints = {
       "level1.html": "Hint: JavaScript validation is dumb. Think console.",
       "level2.html": "Try changing ?id=1 to something else.",
-      "level3.html": "Try classic XSS payload: <script>alert(1)</script>",
+      "level3.html": "Try classic XSS payload: using script tag",
       "level4.html": "Combine all the previous flags... literally."
     };
     const path = window.location.pathname.split("/").pop();
