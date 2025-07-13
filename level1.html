@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 1: Login Bypass</title></head>
+<body>
+  <h2>Level 1 - JS Login</h2>
+  <p>Login with username 'admin' and password 'letmein'</p>
+  <form onsubmit="return checkLogin()">
+    <input id="user" placeholder="Username"><br>
+    <input id="pass" type="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="msg"></p>
+  <script>
+    function checkLogin() {
+      let u = document.getElementById("user").value;
+      let p = document.getElementById("pass").value;
+      if (u === "admin" && p === "letmein") {
+        alert("Flag 1: CTF{Logic_Override}");
+        window.location.href = "level2.html";
+      } else {
+        document.getElementById("msg").innerText = "Nope.";
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>

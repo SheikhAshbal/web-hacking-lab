@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 3: XSS</title></head>
+<body>
+  <h2>Level 3 - Comment Injection</h2>
+  <form method="GET">
+    <input name="q" placeholder="Say something...">
+    <button type="submit">Post</button>
+  </form>
+  <p>Latest comment:</p>
+  <div id="comment"></div>
+  <script>
+    const q = new URLSearchParams(window.location.search).get("q");
+    document.getElementById("comment").innerHTML = q;
+    if (q && q.includes("script")) {
+      alert("Flag 3: CTF{XSS_Breaker}");
+    }
+  </script>
+</body>
+</html>

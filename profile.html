@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>User Profile</title></head>
+<body>
+  <h2>Profile Page</h2>
+  <script>
+    const id = new URLSearchParams(location.search).get("id");
+    if (id === "1") {
+      document.write("👤 User: guest<br>Role: viewer");
+    } else if (id === "2") {
+      document.write("👑 User: admin<br>Flag 2: CTF{IDOR_Master}<br><a href='level3.html'>Next Level</a>");
+    } else {
+      document.write("❌ Invalid user ID.");
+    }
+  </script>
+</body>
+</html>

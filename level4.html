@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 4: Final Vault</title></head>
+<body>
+  <h2>Vault Room</h2>
+  <p>Combine the knowledge of all previous levels. What's the passphrase?</p>
+  <input id="code" placeholder="Enter secret phrase">
+  <button onclick="checkVault()">Unlock</button>
+  <p id="result"></p>
+  <script>
+    function checkVault() {
+      const v = document.getElementById("code").value;
+      if (v === "Logic_Override_IDOR_Master_XSS_Breaker") {
+        document.getElementById("result").innerHTML = "<h3>🏆 Final Flag: CTF{Mind_Over_Source}</h3>";
+      } else {
+        document.getElementById("result").innerText = "Incorrect phrase.";
+      }
+    }
+  </script>
+</body>
+</html>
