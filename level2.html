@@ -1,28 +1,66 @@
 <!DOCTYPE html>
-<html>
-<head><title>Level 2: Profile Hack</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 2 - IDOR Profile Hack</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #00ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px #00ffcc44;
+    }
+    .terminal-box {
+      background: #111;
+      color: #33ff33;
+      padding: 1rem;
+      font-family: monospace;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
 <body>
-  <h2>Level 2 - Profile Enumeration</h2>
-  <p>Access your profile here: <a href="profile.html?id=1">View Profile</a></p>
-  <p>Can you find the admin's?</p>
+  <div class="container">
+    <h2 class="text-center">🕵️ Level 2 - IDOR Profile Hack</h2>
+    <p>This app fetches a profile using a predictable user ID. Try manipulating the parameter to find another user's flag.</p>
 
-  
-   <!-- 💬 NeoBot Assistant -->
-  <div id="bot" style="position: fixed; bottom: 30px; right: 30px; background: rgba(0,0,0,0.8); padding: 15px; color: #0f0; font-family: monospace; border: 2px solid #0f0; border-radius: 12px; z-index: 999;">
-    🤖 <b>NeoBot:</b>
-    <p id="botText">Inject something shiny into the DOM…</p>
+    <div class="mb-3">
+      <label for="userId" class="form-label">View profile by ID:</label>
+      <input type="number" id="userId" class="form-control" placeholder="Enter user ID (e.g. 1)">
+      <button class="btn btn-outline-info w-100 mt-3" onclick="viewProfile()">View Profile</button>
+    </div>
+
+    <div id="profileDisplay" class="terminal-box"></div>
   </div>
 
   <script>
-    const levelHints = {
-      "level1.html": "Hint: JavaScript validation is dumb. Think console.",
-      "level2.html": "Try changing ?id=1 to something else.",
-      "level3.html": "Try classic XSS payload: using script tag",
-      "level4.html": "Combine all the previous flags... literally."
+    const profiles = {
+      1: { name: "ashuu_X", email: "user1@neovault.lab", flag: "CTF{your_profile}" },
+      2: { name: "NeoAdmin", email: "admin@neovault.lab", flag: "CTF{idor_exposed_admin}" }
     };
-    const path = window.location.pathname.split("/").pop();
-    if (levelHints[path]) {
-      document.getElementById("botText").innerText = levelHints[path];
+
+    function viewProfile() {
+      const id = document.getElementById("userId").value;
+      const terminal = document.getElementById("profileDisplay");
+      const profile = profiles[id];
+
+      if (profile) {
+        terminal.textContent = `$ id: ${id}\nName: ${profile.name}\nEmail: ${profile.email}\nFlag: ${profile.flag}`;
+      } else {
+        terminal.textContent = "$ profile not found...";
+      }
     }
   </script>
 </body>
