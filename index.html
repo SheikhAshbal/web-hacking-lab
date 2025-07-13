@@ -14,37 +14,36 @@
     <a href="level3.html">Level 3: XSS</a> |
     <a href="level4.html">Level 4: Vault</a>
   </nav>
+<!-- 🎧 Music Toggle Button -->
+<button id="musicToggle" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; padding: 8px; border: 1px solid lime; z-index: 1000;">
+  🎧 Play Music
+</button>
 
-  <audio id="bgMusic" loop preload="auto">
+<audio id="bgMusic" preload="auto" loop>
   <source src="lofi-hacker.mp3" type="audio/mpeg">
 </audio>
 
-<button onclick="toggleMusic()" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; padding: 8px; border: 1px solid lime; z-index: 1000;">
-  🎧 Music: OFF
-</button>
-
 <script>
-  let playing = false;
   const music = document.getElementById("bgMusic");
-  const btn = document.querySelector("button");
+  const btn = document.getElementById("musicToggle");
+  let playing = false;
 
-  function toggleMusic() {
-    if (playing) {
-      music.pause();
-      btn.textContent = "🎧 Music: OFF";
-    } else {
+  btn.addEventListener("click", () => {
+    if (!playing) {
       music.volume = 0.5;
-      music.play()
-        .then(() => {
-          btn.textContent = "🎧 Music: ON";
-          playing = true;
-        })
-        .catch(err => {
-          console.error("🎧 Playback blocked:", err);
-          alert("Click the page first, then hit the music button.");
-        });
+      music.play().then(() => {
+        playing = true;
+        btn.textContent = "🎧 Stop Music";
+      }).catch(err => {
+        console.error("🎧 Error:", err);
+        alert("Click on the page once first, then press Play Music.");
+      });
+    } else {
+      music.pause();
+      playing = false;
+      btn.textContent = "🎧 Play Music";
     }
-  }
+  });
 </script>
 
 </body>
