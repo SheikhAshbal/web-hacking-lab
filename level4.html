@@ -39,9 +39,9 @@
 <body>
   <div class="container">
     <h2 class="text-center">🔐 Level 4 - Final Vault</h2>
-    <p class="hint">Hint: Combine flags from all previous levels in order. Format: flag1_flag2_flag3</p>
+    <p class="hint">Hint: You need the correct combination of previous level flags (base64-encoded) to unlock the vault.</p>
 
-    <input id="vaultKey" type="text" class="form-control" placeholder="Enter final passphrase">
+    <input id="vaultKey" type="text" class="form-control" placeholder="Enter base64-encoded final key">
     <button class="btn btn-outline-info w-100 mt-3" onclick="unlockVault()">Unlock Vault</button>
 
     <div id="vaultOutput" class="terminal-box"></div>
@@ -49,15 +49,19 @@
 
   <script>
     function unlockVault() {
-      const key = document.getElementById("vaultKey").value.trim();
+      const encodedKey = document.getElementById("vaultKey").value.trim();
       const output = document.getElementById("vaultOutput");
+      try {
+        const decoded = atob(encodedKey);
+        const expected = "CTF{logic_flaw_mastery}_CTF{privilege_escalation_achieved}_CTF{xss_reflect_warrior}_CTF{stored_xss_victory}";
 
-      const expected = "CTF{logic_flaw_mastery}_CTF{idor_exposed_admin}_CTF{xss_zer0_click}";
-
-      if (key === expected) {
-        output.textContent = "$ vault unlocked...\nFinal Flag: CTF{master_of_web_exploitation}";
-      } else {
-        output.textContent = "$ access denied: incorrect vault key.";
+        if (decoded === expected) {
+          output.textContent = `$ vault unlocked\nFinal Flag: CTF{master_of_web_exploitation}`;
+        } else {
+          output.textContent = `$ access denied: invalid final key.`;
+        }
+      } catch {
+        output.textContent = `$ error: base64 decoding failed.`;
       }
     }
   </script>

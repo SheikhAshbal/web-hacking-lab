@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Level 2 - IDOR Profile Hack</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 2 - IDOR Simulation</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
     body {
@@ -13,7 +13,7 @@
       padding: 2rem;
     }
     .container {
-      max-width: 600px;
+      max-width: 650px;
       margin: auto;
       background: #1a1a1a;
       padding: 2rem;
@@ -29,37 +29,45 @@
       margin-top: 1rem;
       white-space: pre-wrap;
     }
+    .hint {
+      font-size: 0.9rem;
+      color: #00cc88;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2 class="text-center">🕵️ Level 2 - IDOR Profile Hack</h2>
-    <p>This app fetches a profile using a predictable user ID. Try manipulating the parameter to find another user's flag.</p>
+    <h2 class="text-center">🕵️ Level 2 - IDOR Simulation</h2>
+    <p class="hint">Hint: You're logged in as user ID 1. Try manipulating the URL.</p>
+    <p>This system fetches profiles based on ID in the query string. Only ID 1 is allowed — or is it?</p>
 
-    <div class="mb-3">
-      <label for="userId" class="form-label">View profile by ID:</label>
-      <input type="number" id="userId" class="form-control" placeholder="Enter user ID (e.g. 1)">
-      <button class="btn btn-outline-info w-100 mt-3" onclick="viewProfile()">View Profile</button>
-    </div>
-
-    <div id="profileDisplay" class="terminal-box"></div>
+    <div class="terminal-box" id="profileDisplay"></div>
   </div>
 
   <script>
-    const profiles = {
-      1: { name: "ashuu_X", email: "user1@neovault.lab", flag: "CTF{your_profile}" },
-      2: { name: "NeoAdmin", email: "admin@neovault.lab", flag: "CTF{idor_exposed_admin}" }
+    const users = {
+      1: { name: "ashuu_X", role: "user", email: "user@vault.lab" },
+      2: { name: "NeoAdmin", role: "admin", email: "root@vault.lab", flag: "CTF{privilege_escalation_achieved}" }
     };
 
-    function viewProfile() {
-      const id = document.getElementById("userId").value;
-      const terminal = document.getElementById("profileDisplay");
-      const profile = profiles[id];
+    // Simulated session
+    const currentUser = { id: 1, role: 'user' };
 
-      if (profile) {
-        terminal.textContent = `$ id: ${id}\nName: ${profile.name}\nEmail: ${profile.email}\nFlag: ${profile.flag}`;
-      } else {
-        terminal.textContent = "$ profile not found...";
+    const params = new URLSearchParams(window.location.search);
+    const idParam = parseInt(params.get('id')) || currentUser.id;
+    const profile = users[idParam];
+    const output = document.getElementById("profileDisplay");
+
+    if (!profile) {
+      output.textContent = `$ error: profile id ${idParam} not found.`;
+    } else if (idParam === currentUser.id) {
+      output.textContent = `$ profile loaded\nid: ${idParam}\nname: ${profile.name}\nrole: ${profile.role}\nemail: ${profile.email}\nflag: [restricted]`;
+    } else {
+      output.textContent = `$ ⚠️ unauthorized access attempt detected\nid: ${idParam}\nname: ${profile.name}\nrole: ${profile.role}\nemail: ${profile.email}`;
+
+      if (profile.flag) {
+        output.textContent += `\nflag: ${profile.flag}`;
       }
     }
   </script>
