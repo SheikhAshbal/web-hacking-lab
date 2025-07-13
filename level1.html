@@ -23,5 +23,22 @@
       return false;
     }
   </script>
+  <!-- 💬 NeoBot Assistant -->
+  <div id="bot" style="position: fixed; bottom: 30px; right: 30px; background: rgba(0,0,0,0.8); padding: 15px; color: #0f0; font-family: monospace; border: 2px solid #0f0; border-radius: 12px; z-index: 999;">
+    🤖 <b>NeoBot:</b>
+    <p id="botText">I'm watching you... try bypassing the login logic.</p>
+  </div>
+  <script>
+    const levelHints = {
+      "level1.html": "Hint: JavaScript validation is dumb. Think console.",
+      "level2.html": "Try changing ?id=1 to something else.",
+      "level3.html": "Try classic XSS payload: <script>alert(1)</script>",
+      "level4.html": "Combine all the previous flags... literally."
+    };
+    const path = window.location.pathname.split("/").pop();
+    if (levelHints[path]) {
+      document.getElementById("botText").innerText = levelHints[path];
+    }
+  </script>
 </body>
 </html>
