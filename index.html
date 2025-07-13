@@ -1,50 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CTF Challenge: NeoVault</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoVault CTF - Enhanced</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #00ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 40px;
+    }
+    .ctf-container {
+      max-width: 800px;
+      margin: auto;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px #00ffcc44;
+    }
+    .ctf-header {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .btn-level {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+      padding: 0.6rem 1.2rem;
+      margin: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn-level:hover {
+      background: #00ffcc;
+      color: #0d0d0d;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+    .terminal {
+      background: #111;
+      color: #33ff33;
+      padding: 1rem;
+      font-family: monospace;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-  <h1>🏁 Welcome to NeoVault CTF</h1>
-  <p>This isn't just a site... it's a puzzle box for hackers.</p>
-  <p>Find all the flags. Use your brain, not just your browser.</p>
-  <nav>
-    <a href="level1.html">Level 1: Login Bypass</a> |
-    <a href="level2.html">Level 2: Profile Logic</a> |
-    <a href="level3.html">Level 3: XSS</a> |
-    <a href="level4.html">Level 4: Vault</a>
-  </nav>
-<!-- 🎧 Music Toggle Button -->
-<button id="musicToggle" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; padding: 8px; border: 1px solid lime; z-index: 1000;">
-  🎧 Play Music
-</button>
+  <div class="ctf-container">
+    <div class="ctf-header">NeoVault CTF Lab</div>
+    <p>Welcome to the next-gen hacking lab. Choose a level below and test your offensive security skills.</p>
+    <div class="d-flex flex-wrap justify-content-center">
+      <a href="level1.html" class="btn btn-level">Level 1: JS Login Bypass</a>
+      <a href="level2.html" class="btn btn-level">Level 2: IDOR Attack</a>
+      <a href="level3.html" class="btn btn-level">Level 3: XSS Injection</a>
+      <a href="level4.html" class="btn btn-level">Level 4: Final Vault</a>
+    </div>
 
-<audio id="bgMusic" preload="auto" loop>
-  <source src="lofi-hacker.mp3" type="audio/mpeg">
-</audio>
+    <div class="terminal mt-4">
+      $ whoami<br>
+      0x1337_hacker logged in.<br>
+      $ cat objective.txt<br>
+      [*] Your mission is to exploit, escalate, and exfiltrate. Each level is a real-world attack simulation.<br>
+      [*] Languages in use: HTML, CSS, JavaScript, Python (embedded simulations), WebSocket, Node.js.
+    </div>
+  </div>
 
-<script>
-  const music = document.getElementById("bgMusic");
-  const btn = document.getElementById("musicToggle");
-  let playing = false;
-
-  btn.addEventListener("click", () => {
-    if (!playing) {
-      music.volume = 0.5;
-      music.play().then(() => {
-        playing = true;
-        btn.textContent = "🎧 Stop Music";
-      }).catch(err => {
-        console.error("🎧 Error:", err);
-        alert("Click on the page once first, then press Play Music.");
-      });
-    } else {
-      music.pause();
-      playing = false;
-      btn.textContent = "🎧 Play Music";
-    }
-  });
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
