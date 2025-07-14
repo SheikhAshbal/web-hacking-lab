@@ -34,6 +34,10 @@
       color: #00cc88;
       margin-bottom: 10px;
     }
+    #nextBtn {
+      display: none;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -55,18 +59,30 @@
       <b>Reflected Input:</b>
       <div id="reflected"></div>
     </div>
+
+    <a id="nextBtn" href="level4.html" class="btn btn-success w-100">➡️ Proceed to Level 4</a>
   </div>
 
   <script>
-    // 1. Reflected from query param ?vuln=
+    const flagsUnlocked = new Set(JSON.parse(localStorage.getItem("ctf-flags") || "[]"));
     const reflectedParam = new URLSearchParams(window.location.search).get("vuln");
     const reflectedBox = document.getElementById("reflected");
+
+    function storeFlag(flag) {
+      if (!flagsUnlocked.has(flag)) {
+        flagsUnlocked.add(flag);
+        localStorage.setItem("ctf-flags", JSON.stringify([...flagsUnlocked]));
+      }
+      document.getElementById("nextBtn").style.display = "block";
+    }
+
     if (reflectedParam) {
       try {
         const decoded = atob(reflectedParam);
         reflectedBox.innerHTML = decoded;
         if (decoded.includes("<script") || decoded.includes("onerror")) {
           alert("💥 Reflected XSS Triggered! Flag: CTF{xss_reflect_warrior}");
+          storeFlag("CTF{xss_reflect_warrior}");
         }
       } catch {
         reflectedBox.textContent = "Invalid base64 input.";
@@ -75,7 +91,6 @@
       reflectedBox.textContent = "(no input reflected)";
     }
 
-    // 2. Stored comment logic
     const form = document.getElementById("commentForm");
     const logBox = document.getElementById("commentLog");
     const storedComments = JSON.parse(localStorage.getItem("xss-comments") || "[]");
@@ -91,6 +106,7 @@
 
           if (decoded.includes("<script") || decoded.includes("onerror")) {
             alert("🔥 Stored XSS Triggered! Flag: CTF{stored_xss_victory}");
+            storeFlag("CTF{stored_xss_victory}");
           }
         } catch {
           logBox.innerHTML += `<div>Invalid base64</div>`;

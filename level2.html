@@ -34,6 +34,10 @@
       color: #00cc88;
       margin-bottom: 10px;
     }
+    #nextBtn {
+      display: none;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -43,6 +47,7 @@
     <p>This system fetches profiles based on ID in the query string. Only ID 1 is allowed — or is it?</p>
 
     <div class="terminal-box" id="profileDisplay"></div>
+    <a id="nextBtn" href="level3.html" class="btn btn-success w-100">➡️ Proceed to Level 3</a>
   </div>
 
   <script>
@@ -51,13 +56,20 @@
       2: { name: "NeoAdmin", role: "admin", email: "root@vault.lab", flag: "CTF{privilege_escalation_achieved}" }
     };
 
-    // Simulated session
     const currentUser = { id: 1, role: 'user' };
-
     const params = new URLSearchParams(window.location.search);
     const idParam = parseInt(params.get('id')) || currentUser.id;
     const profile = users[idParam];
     const output = document.getElementById("profileDisplay");
+
+    function unlockNext(flag) {
+      let flags = JSON.parse(localStorage.getItem("ctf-flags") || "[]");
+      if (!flags.includes(flag)) {
+        flags.push(flag);
+        localStorage.setItem("ctf-flags", JSON.stringify(flags));
+      }
+      document.getElementById("nextBtn").style.display = "block";
+    }
 
     if (!profile) {
       output.textContent = `$ error: profile id ${idParam} not found.`;
@@ -65,9 +77,9 @@
       output.textContent = `$ profile loaded\nid: ${idParam}\nname: ${profile.name}\nrole: ${profile.role}\nemail: ${profile.email}\nflag: [restricted]`;
     } else {
       output.textContent = `$ ⚠️ unauthorized access attempt detected\nid: ${idParam}\nname: ${profile.name}\nrole: ${profile.role}\nemail: ${profile.email}`;
-
       if (profile.flag) {
         output.textContent += `\nflag: ${profile.flag}`;
+        unlockNext(profile.flag);
       }
     }
   </script>
