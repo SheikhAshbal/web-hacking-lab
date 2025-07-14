@@ -35,6 +35,10 @@
       color: #0cf29e;
       font-size: 0.9rem;
     }
+    #nextBtn {
+      display: none;
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -49,6 +53,7 @@
     </form>
 
     <div id="terminal" class="terminal-box"></div>
+    <a id="nextBtn" href="level2.html" class="btn btn-success w-100">➡️ Proceed to Level 2</a>
   </div>
 
   <script>
@@ -66,10 +71,9 @@
         if (users[u].role === "admin") {
           terminal.textContent = `$ login accepted\nrole: admin\nflag: ${users[u].flag}`;
           storeFlag(users[u].flag);
-          setTimeout(() => window.location.href = "level2.html", 1500);
+          document.getElementById("nextBtn").style.display = "block";
         } else {
           terminal.textContent = `$ login accepted\nrole: user\nflag: [restricted]`;
-          setTimeout(() => window.location.href = "level2.html", 1500);
         }
       } else {
         terminal.textContent = "$ access denied: invalid credentials.";
@@ -88,7 +92,7 @@
     function devBypass() {
       storeFlag("CTF{console_mastermind}");
       document.getElementById("terminal").textContent = `$ dev override triggered...\nflag: CTF{console_mastermind}`;
-      setTimeout(() => window.location.href = "level2.html", 1500);
+      document.getElementById("nextBtn").style.display = "block";
     }
     window.devBypass = devBypass;
   </script>
