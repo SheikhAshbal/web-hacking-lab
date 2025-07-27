@@ -1,0 +1,163 @@
+/* === Global Terminal Theme for All Levels === */
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0a0a0a;
+  color: #00ffcc;
+}
+
+/* === Inputs === */
+input[type="text"], input[type="password"], textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* === Buttons === */
+button, .terminal-button {
+  padding: 10px 20px;
+  background-color: #00ffcc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover, .terminal-button:hover {
+  background-color: #00d9aa;
+}
+
+/* === Terminal Container (Shared for All Levels) === */
+.terminal,
+.level1-container,
+.level2-container,
+.level3-container,
+.level4-container,
+.level5-container {
+  max-width: 750px;
+  margin: 60px auto;
+  background: #111;
+  padding: 40px;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ffcc88;
+}
+
+/* === Typewriter Heading Animation === */
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid #00ffcc;
+  white-space: nowrap;
+  font-size: 24px;
+  animation: typing 2.5s steps(30, end), blink 0.8s infinite;
+  text-align: center;
+  margin: 0 auto 20px;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #00ffcc }
+}
+
+/* === Output / Flag / Badge Boxes === */
+.output-box,
+.flag-box,
+.badge,
+#reflectedOutput,
+#storedOutput,
+#domOutput,
+#submissionResult {
+  background: #001818;
+  padding: 12px;
+  border-left: 5px solid #00ffcc;
+  border-radius: 5px;
+  margin-top: 20px;
+  color: #00ffcc;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+/* Hidden by default, shown with JS */
+.flag-box,
+#reflectedOutput,
+#storedOutput,
+#domOutput {
+  display: none;
+}
+
+.flag-box.visible,
+.output-box.visible,
+.badge.visible,
+#reflectedOutput.visible,
+#storedOutput.visible,
+#domOutput.visible {
+  display: block;
+}
+
+/* === Badge Section === */
+.badge {
+  background: #002222;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* === Hint Toggle and Box === */
+.hint-box {
+  display: none;
+  background: #fff8dc;
+  padding: 10px;
+  border-left: 5px solid #ffae42;
+  font-family: monospace;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: #000;
+}
+
+.hint-toggle {
+  margin-top: 15px;
+  background-color: #ffae42;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* === Horizontal Rule === */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #00ffcc55;
+  margin: 30px 0;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .terminal, .level1-container, .level2-container, .level3-container {
+    padding: 20px;
+  }
+
+  .typewriter {
+    font-size: 18px;
+  }
+}

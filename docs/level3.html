@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Level 3 - XSS Lab</title>
+  <link rel="icon" type="image/png" href="neovault-logo.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🛡️ XSS Challenge (Level 3)</h1>
+
+  <!-- Reflected XSS -->
+  <section>
+    <h2>🔍 Reflected XSS</h2>
+    <p>Try appending <code>?reflect=&lt;payload&gt;</code> in the URL.</p>
+    <div id="reflectedOutput"></div>
+    <div id="flag-reflected" style="display: none;" class="flag-box">
+      🎉 Flag: <strong>CTF{reflected_master}</strong>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- DOM XSS -->
+  <section>
+    <h2>🧠 DOM-Based XSS</h2>
+    <input id="domInput" placeholder="Type payload here..." />
+    <button onclick="runDomXss()">Run</button>
+    <div id="domOutput"></div>
+    <div id="flag-dom" style="display: none;" class="flag-box">
+      🎉 Flag: <strong>CTF{dom_xss_achieved}</strong>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Stored XSS -->
+  <section>
+    <h2>💾 Stored XSS</h2>
+    <input id="storedInput" placeholder="Leave a comment..." />
+    <button onclick="storeComment()">Submit Comment</button>
+    <div id="storedOutput"></div>
+    <div id="flag-stored" style="display: none;" class="flag-box">
+      🎉 Flag: <strong>CTF{stored_owned}</strong>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Flag Submission -->
+  <section>
+    <h2>🎯 Submit Your Flags</h2>
+    <input type="text" id="flagInput" placeholder="Enter your flag here" />
+    <button onclick="submitFlag()">Submit Flag</button>
+    <div id="submissionResult"></div>
+  </section>
+
+  <script src="level3.js"></script>
+</body>
+</html>

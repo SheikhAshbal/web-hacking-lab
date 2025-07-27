@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 4: DevTools Challenge</title>
+  <link rel="icon" type="image/png" href="neovault-logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="level3-container">
+    <div class="logo-line">
+      <h1 class="typewriter">Level 4: DevTools Only</h1>
+    </div>
+
+    <div class="level3-box">
+      <p>⚠️ No input here will help you. DevTools is your best friend.</p>
+
+      <div id="flag-csp" class="flag-box">
+        🏁 Flag: <strong>CTF{devtools_reveals_truth}</strong>
+      </div>
+
+      <button class="hint-toggle" onclick="toggleHint()">💡 Show Hints</button>
+      <div class="hint-box" id="hintBox">
+        <ul>
+          <li>🔍 A global function is hiding in the console...</li>
+          <li>🧠 Scope is everything</li>
+          <li>🛠️ JavaScript may be hidden, but not gone</li>
+          <li>🤫 Try running <code>typeof revealFlag !== "undefined" && revealFlag()</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level3-box">
+      <p>🏁 Submit your flag:</p>
+      <input type="text" id="flagInput" placeholder="CTF{...}">
+      <button onclick="submitFlag()">Submit Flag</button>
+      <div id="submissionResult" class="badge"></div>
+    </div>
+  </div>
+
+  <script src="level4.js"></script>
+  <script>
+    function toggleHint() {
+      const hint = document.getElementById("hintBox");
+      const button = document.querySelector('.hint-toggle');
+      if (hint.style.display === "block") {
+        hint.style.display = "none";
+        button.textContent = "💡 Show Hints";
+      } else {
+        hint.style.display = "block";
+        button.textContent = "🔒 Hide Hints";
+      }
+    }
+  </script>
+</body>
+</html>
