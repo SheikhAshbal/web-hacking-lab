@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 5: Obfuscation & Logic Puzzle</title>
+  <link rel="icon" type="image/png" href="../assets/neovault-logo.png">
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <div class="level5-container">
+    <div class="logo-line">
+      <h1 class="typewriter">Level 5: Mind Games</h1>
+    </div>
+
+    <div class="level5-box">
+      <p>👁‍🗨 Nothing is as it seems... Can you solve the puzzle?</p>
+      <p>🧠 Tip: Open DevTools and check the Console.</p>
+
+      <div id="flag-obfuscated" class="flag-box" style="display: none;">
+        🏁 Flag: <strong>CTF{logic_decoded_victory}</strong>
+      </div>
+
+      <input type="text" id="flagInput" placeholder="CTF{...}">
+      <button onclick="submitFlag()">Submit Flag</button>
+      <div id="submissionResult" class="badge"></div>
+    </div>
+  </div>
+
+  <script src="../JS/level5.js"></script>
+</body>
+</html>

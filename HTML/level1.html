@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Level 1 | NeoVault CTF</title>
+  <link rel="icon" type="image/png" href="../assets/neovault-logo.png">
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <div class="terminal">
+    <div class="logo-line">
+      <h1 class="typewriter">[ Level 1: Source Code Spy ]</h1>
+    </div>
+
+    <div class="terminal-output" id="output">
+      <p>> Agent: <span id="nickname">Loading...</span></p>
+      <p>> Welcome to Level 1. Hidden in plain sight lies your first flag.</p>
+      <p>> Hint: "Right-click is your friend."</p>
+    </div>
+
+    <input type="text" id="flagInput" class="terminal-input" placeholder="Enter flag here">
+    <button class="terminal-button" onclick="checkFlag()">SUBMIT</button>
+
+    <div id="feedback" class="badge" style="display:none;"></div>
+  </div>
+
+  <!-- Separate JS file -->
+  <script src="C:\Users\CCS-CREATIVE\Desktop\web-hacking-lab\JS\level1.js"></script>
+
+  <!-- Hidden Flag in HTML comments -->
+  <!-- FLAG: CTF{source_code_detection} -->
+</body>
+</html>

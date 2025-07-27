@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Level 6: Advanced XSS Puzzle</title>
+  <link rel="icon" type="image/png" href="../assets/neovault-logo.png">
+  <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<body>
+  <div class="terminal">
+    <h1 class="typewriter">Level 6: Advanced XSS Puzzle</h1>
+
+    <p>Challenge: Defeat the filters and find the XSS injection point!</p>
+
+    <input type="text" id="advancedInput" class="terminal-input" placeholder="Try some sneaky payload..." />
+    <button class="terminal-button" onclick="submitAdvanced()">Submit</button>
+
+    <div id="advancedOutput" class="output-box"></div>
+    <div id="flag-advanced" class="badge" style="display: none;">🎉 CTF{filter_bypass_success}</div>
+
+    <div style="margin-top: 30px;">
+      <input type="text" id="flagInput" class="terminal-input" placeholder="Submit flag to proceed" />
+      <button class="terminal-button" onclick="submitFlag()">Submit Flag</button>
+      <div id="submissionResult"></div>
+    </div>
+  </div>
+
+  <!-- Link external JavaScript -->
+  <script src="../JS/level6.js"></script>
+</body>
+</html>

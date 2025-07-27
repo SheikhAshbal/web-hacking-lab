@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Level 2 | NeoVault CTF</title>
+  <link rel="icon" type="image/png" href="../assets/neovault-logo.png">
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <div class="terminal">
+    <div class="logo-line">
+      <h1 class="typewriter">[ Level 2: Decode the Message ]</h1>
+    </div>
+
+    <div class="terminal-output" id="output">
+      <p>> Agent: <span id="nickname">Loading...</span></p>
+      <p>> Intel: We've intercepted an encoded flag. We need your decryption skills.</p>
+      <p>> Cipher Text: <code id="cipher">Q1RGe3JldmVyc2VfZW5naW5lZXJfY29kZX0=</code></p>
+      <p>> Objective: Decode it and submit the correct flag.</p>
+    </div>
+
+    <input type="text" id="flagInput" class="terminal-input" placeholder="Enter decoded flag">
+    <button class="terminal-button" onclick="checkFlag()">SUBMIT</button>
+
+    <div id="feedback" class="badge" style="display:none;"></div>
+  </div>
+
+  <!-- Separate JS file -->
+  <script src="C:\Users\CCS-CREATIVE\Desktop\web-hacking-lab\JS\level2.js"></script>
+</body>
+</html>
